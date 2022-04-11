@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Quiz!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+
+
+</head>
+    <div class="d-flex p-4 mb-4 justify-content-between">
+            <a href="">View High Scores</a>
+            <p class="timer" id="timer">Start the quiz to begin the timer!</p>
+    </div>
+
+<body onload="setup()">
+
+    <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class="btn btn-primary" id="gameStart">Start!</button>
+    </div>
+
+    <div class="container hide" id="questionBox">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="box">
+                <h1 id="questionNo"></h1>
+                <p id="question"></p>
+                <input id="text-field" type="text" class="form-control">
+                <input id="button" type="submit" value="Submit" class="btn btn-primary btn-block" onclick="clickButton();">
+            </div>
+        </div>
+    </div>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
