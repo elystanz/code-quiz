@@ -1,10 +1,17 @@
 var startBtn = document.getElementById("gameStart");
-var questions = [["What is 1+1?", "2"], ["What is 2x2?", "4"], ["What is 10+5?", "15"]];
+var questions = [
+    ["How do you write 'not equal to'?", "!="], 
+    ["What method would you use to retrieve a DOM element by its ID?", "document.getElementById()"], 
+    ["How would you retrieve data from LocalStorage?", "localStorage.getItem()"],
+    ["True or false, the toString() method returns a number as a string", "/[tT]rue/"],
+    ["What will typeof false return as?", "/[bB]oolean/"],
+    ["True or false, 'null' and 'undefined' can still contain values", "/[fF]alse/"]
+];
 
 var questionNo = 1;
 var score = 0;
 
-var timeLeft = 10;
+var timeLeft = 60;
 var interval;
 
 function clickButton(){
@@ -14,13 +21,13 @@ function clickButton(){
     setup();
 };
 
-    // document.getElementById("questionNo").innerHTML = "JavaScript Code Quiz!";
-    // document.getElementById("question").innerHTML = "Take this timed quiz to test your JS knowledge, and maybe beat the high score!";
-
 function setup(){    
     startBtn.addEventListener("click", function(){
         interval = setInterval(countdown, 1000);
         let elem = document.getElementById("timer");
+
+        document.getElementById("titleScreen").remove();
+        document.getElementById("subTitleScreen").remove();
 
         startBtn.classList.add("hide");
         document.getElementById("questionBox").classList.remove("hide");
@@ -52,7 +59,7 @@ function setup(){
 
         var btn = document.createElement("button");
         btn.innerHTML = "Save Your Score!"
-        btn.classList.add("btn", "btn-primary");
+        btn.classList.add("btn", "btn-outline-dark");
         document.body.append(btn);
         
         btn.addEventListener("click", function() {
@@ -70,7 +77,7 @@ function setup(){
 function check(){
     if (document.getElementById("text-field").value === questions[0][1]) {
         console.log("correct");
-        score++;
+        score += 2;
         document.getElementById("text-field").value = "";
     } else if (document.getElementById("text-field").value !== questions[0][1]) {
         console.log("incorrect");
@@ -80,25 +87,19 @@ function check(){
     }
 };
 
-function showScores() {
-    var viewBtn = document.getElementById("viewScores");
-    viewBtn.addEventListener("click", function() {
-        var retrieveScores = localStorage.getItem("newscore");
-        var theseScores = JSON.parse(retrieveScores);
-        console.log(theseScores);
+var modal = document.getElementById("scoreModal");
+var btn = document.getElementById("viewScores");
 
-        // var scoreList = document.createElement("li");
-        
-        // for (var i = 0; i < theseScores.length; i++) {
-        //     scoreList.appendChild(document.createTextNode(theseScores));
-        //     list.appendChild(scoreList);
+var retrieveScores = localStorage.getItem("newscore");
+var thisScore = JSON.parse(retrieveScores);
+console.log(thisScore);
 
-        // };
-    });
-};
+var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+        document.getElementById("scoresHere").innerHTML = thisScore + "!";
+    };
 
-
-
-// function endGame() {
-//     document.getElementById("questionBox").classList.add("hide");
-// }
+    span.onclick = function() {
+        modal.style.display = "none"
+    };

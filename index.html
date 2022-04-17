@@ -11,14 +11,27 @@
 
 </head>
     <div class="d-flex p-4 mb-4 justify-content-between">
-            <button type="button" class="btn btn-link" id="viewScores">View High Scores</button>
+            <button type="button" class="btn btn-warning" id="viewScores">View High Score</button>
             <p class="timer" id="timer">Start the quiz to begin the timer!</p>
     </div>
 
 <body onload="setup()">
 
-    <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="btn btn-primary" id="gameStart">Start!</button>
+    <div id="scoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center p-1">
+                <h6 class="modal-title">The high score is held by...</h6>
+                <span class="close">&times;</span>
+            </div> 
+            <p id="scoresHere">scores here</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center row row-cols-1">
+        <h1 class="col" id="titleScreen">JavaScript Code Quiz!</h1>
+        <p class="fw-light col" id="subTitleScreen">Take this timed quiz to test your JS knowledge, and maybe beat the high score!</p>
+        
+        <button type="button" class="btn btn-outline-dark col-sm" id="gameStart">Start!</button>
     </div>
 
     <div class="container hide" id="questionBox">
@@ -27,7 +40,7 @@
                 <h1 id="questionNo"></h1>
                 <p id="question"></p>
                 <input id="text-field" type="text" class="form-control">
-                <input id="button" type="submit" value="Submit" class="btn btn-primary btn-block" onclick="clickButton();">
+                <input id="button" type="submit" value="Submit" class="btn btn-dark btn-block" onclick="clickButton();">
             </div>
         </div>
     </div>
