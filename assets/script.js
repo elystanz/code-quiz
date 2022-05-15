@@ -16,7 +16,7 @@ var questions = [
 var questionNo = 1;
 var score = 0;
 
-var timeLeft = 10;
+var timeLeft = 60;
 var interval;
 
 // QUIZ CONTENT
