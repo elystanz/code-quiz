@@ -1,20 +1,22 @@
 // GLOBAL VARIABLES
 // set global variables, including quiz questions and time
 var startBtn = document.getElementById("gameStart");
+var restartBtn = document.getElementById("reloadGame");
+
 var questions = [
     ["How do you write 'not equal to'?", "!="], 
-    ["What method would you use to retrieve a DOM element by its ID? (remember to type out the full method!)", "document.getElementById()"], 
-    ["How would you retrieve data from LocalStorage?", "localStorage.getItem()"],
-    ["Is this method correct? If not, correct it. If yes, just retype the method: for (var i = 0, i < array, i++){}", "for (var i = 0; i < array; i++){}"],
+    ["What method would you use to retrieve a DOM element by its ID? (remember to type out the full method!);", "document.getElementById();"], 
+    ["How would you retrieve data from LocalStorage?", "localStorage.getItem();"],
+    ["Is this method correct? If not, correct it. If yes, just retype the method: for (var i = 0, i < array, i++){};", "for (var i = 0; i < array; i++){};"],
     ["There is a list of names with the highest index of 7. How many names are there?", "8"],
-    ["Is this method correct? If not, correct it. If yes, just retype the method: exampleTask.appendChild.this(listItemEl)", "exampleTask.appendChild(listItemEl)"]
+    ["Is this method correct? If not, correct it. If yes, just retype the method: exampleTask.appendChild.this(listItemEl);", "exampleTask.appendChild(listItemEl);"]
 ];
 
 
 var questionNo = 1;
 var score = 0;
 
-var timeLeft = 60;
+var timeLeft = 10;
 var interval;
 
 // QUIZ CONTENT
@@ -44,12 +46,18 @@ function setup(){
         function countdown() {
             if (timeLeft == -1) {
                 clearInterval(interval);
-                elem.innerHTML = "Time's up!"
-                document.getElementById("timer").textContent = "Time's up!"
-                document.getElementById("questionNo").innerHTML = "You're out of time!"
+                elem.innerHTML = "Time's up!";
+                document.getElementById("timer").textContent = "Time's up!";
+                document.getElementById("questionNo").innerHTML = "You're out of time!";
                 document.getElementById("question").innerHTML = "Your score is: " + score;
                 document.getElementById("text-field").remove();
                 document.getElementById("button").remove();
+                // show button to reload page
+                restartBtn.classList.remove("hide");
+                restartBtn.addEventListener("click", function() {
+                    window.location.reload();
+                });
+                document.body.append(restartBtn);
             } else {
                 elem.innerHTML = timeLeft + " seconds remaining";
                 timeLeft--
